@@ -2,7 +2,7 @@
 
 TSock::TSock(SubmitType submit) : MSocket(submit)
 {
-	m_port = 0;
+	;
 }
 
 

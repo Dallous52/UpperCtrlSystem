@@ -48,21 +48,23 @@ enum SubmitType
 };
 
 
+//网络Socket基类
 class MSocket
 {
 public:
 	MSocket(SubmitType submit)
 	{
 		submitType = submit;
+		m_port = 0;
 	}
 
 	virtual ~MSocket() {}
 
 public:
-	virtual SOCK Peer_To_Peer() = 0;
-
+	//链接到主机
 	virtual SOCK ConnectTo() = 0;
 
+	//监听或绑定本机端口
 	virtual SOCK BindOrListen() = 0;
 
 public:

@@ -1,7 +1,6 @@
 ﻿#include "SysManage.h"
 
 
-//git测试
 int main()
 {
 	//获取并初始化单例成员

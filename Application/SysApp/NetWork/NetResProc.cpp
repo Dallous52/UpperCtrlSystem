@@ -3,7 +3,8 @@
 void NetWork::ResponseProcThread()
 {
 	Interaction* response;
-	MSocket* sock;
+	MSocket* msock;
+	SOCK tempSock;
 
 	while (!m_exit)
 	{
@@ -16,24 +17,26 @@ void NetWork::ResponseProcThread()
 		reslock.unlock();
 
 		//数据转换为需求数据类型
-		sock = static_cast<MSocket*>(response->data);
+		msock = static_cast<MSocket*>(response->data);
 
-		switch (sock->submitType)
+		switch (msock->submitType)
 		{
 		case CONNECT:
-			sock->ConnectTo();
+			tempSock = msock->ConnectTo();
 			break;
 
 		case BIND_LISTEN:
-			sock->BindOrListen();
+			tempSock = msock->BindOrListen();
 			break;
 
 		case P_TO_P:
-			sock->Peer_To_Peer();
+			
 			break;
 
 		default:
 			break;
 		}
+
+
 	}
 }
